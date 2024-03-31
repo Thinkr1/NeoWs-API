@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config';
+import "./styles.css"
 
 function Asts() {
   const [asteroids, setAsteroids] = useState([]);
@@ -16,9 +17,9 @@ function Asts() {
   }, []);
 
   return (
-    <div>
+    <div className='container'>
       <h1>Neows API</h1>
-      <table>
+      <table className='table'>
         <thead>
           <tr>
             <th>Name</th>
