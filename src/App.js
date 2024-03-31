@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import config from "./config";
-import "./styles.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import config from './config';
+import "./styles.css"
 
 function Asts() {
   const [asteroids, setAsteroids] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${config.NASA_API_KEY}`
-      )
-      .then((response) => {
+    axios.get(`https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${config.NASA_API_KEY}`)
+     .then(response => {
         setAsteroids(response.data.near_earth_objects);
       })
-      .catch((error) => {
-        console.error("Error fetching API:", error);
+     .catch(error => {
+        console.error('Error fetching API:', error);
       });
   }, []);
 
@@ -37,9 +34,9 @@ function Asts() {
   };
 
   return (
-    <div className="container">
-      <h1>Neows API</h1>
-      <table className="table">
+    <div className='container'>
+      <h1>NeoWs API</h1>
+      <table className='table'>
         <thead>
           <tr>
             <th>Name</th>
@@ -48,42 +45,23 @@ function Asts() {
             {/* <th>Distance from Earth (km)</th> */}
             <th>Potentially Hazardous?</th>
             <th>First recorded approach</th>
+            <th>First recorded approach relative velocity (km/h)</th>
             <th>Last recorded approach</th>
+            <th>First recorded approach relative velocity (km/h)</th>
           </tr>
         </thead>
         <tbody>
-          {asteroids.map((asteroid) => (
+          {asteroids.map(asteroid => (
             <tr key={asteroid.id}>
               <td>{asteroid.name}</td> {/*Name*/}
-              <td>
-                {(
-                  (asteroid.estimated_diameter.kilometers
-                    .estimated_diameter_min +
-                    asteroid.estimated_diameter.kilometers
-                      .estimated_diameter_max) /
-                  2
-                ).toFixed(3)}
-              </td>{" "}
-              {/*Diameter*/}
-              <td>{asteroid.close_approach_data[0].orbiting_body}</td>{" "}
-              {/*Orbiting body*/}
-              {/* <td>{Math.round(asteroid.close_approach_data[0].miss_distance.kilometers)}</td> */}{" "}
-              {/*Distance from Earth in first recorded approach*/}
-              <td>
-                {asteroid.is_potentially_hazardous_asteroid ? "Yes" : "No"}
-              </td>{" "}
-              {/*Hazardous?*/}
-              <td>
-                {asteroid.close_approach_data[0].close_approach_date}
-              </td>{" "}
-              {/*First recorded approach*/}
-              <td>
-                {
-                  getLastApproach(asteroid.close_approach_data)
-                    .close_approach_date
-                }
-              </td>{" "}
-              {/*Last recorded approach*/}
+              <td>{(((asteroid.estimated_diameter.kilometers.estimated_diameter_min)+(asteroid.estimated_diameter.kilometers.estimated_diameter_max))/2).toFixed(3)}</td>  {/*Diameter*/}
+              <td>{asteroid.close_approach_data[0].orbiting_body}</td>  {/*Orbiting body*/}
+              {/* <td>{Math.round(asteroid.close_approach_data[0].miss_distance.kilometers)}</td> */}  {/*Distance from Earth in first recorded approach*/}
+              <td>{asteroid.is_potentially_hazardous_asteroid? "Yes" : "No"}</td>  {/*Hazardous?*/}
+              <td>{asteroid.close_approach_data[0].close_approach_date}</td> {/*First recorded approach*/}
+              <td>{Math.round(asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour)}</td> {/*First recorded approach relative velocity*/}
+              <td>{getLastApproach(asteroid.close_approach_data).close_approach_date}</td> {/*Last recorded approach*/}
+              <td>{Math.round(getLastApproach(asteroid.close_approach_data).relative_velocity.kilometers_per_hour)}</td> {/*Last recorded approach relative velocity*/}
             </tr>
           ))}
         </tbody>
