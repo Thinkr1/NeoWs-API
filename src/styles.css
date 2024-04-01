@@ -25,6 +25,15 @@
     cursor: pointer;
   }
   
-  .atable tr:hover {
+  .table tr:hover {
     background-color: #f5f5f5;
   }
+
+a {
+  text-decoration: none;
+  color:rgb(21, 21, 92)
+}
+
+a:hover {
+  color:rgb(63, 63, 255)
+}

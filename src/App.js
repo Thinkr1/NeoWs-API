@@ -53,7 +53,7 @@ function Asts() {
         <tbody>
           {asteroids.map(asteroid => (
             <tr key={asteroid.id}>
-              <td>{asteroid.name}</td> {/*Name*/}
+              <td><a href={asteroid.nasa_jpl_url} target="_blank" rel="noopener noreferrer">{asteroid.name}</a></td> {/*Name + link*/}
               <td>{(((asteroid.estimated_diameter.kilometers.estimated_diameter_min)+(asteroid.estimated_diameter.kilometers.estimated_diameter_max))/2).toFixed(3)}</td>  {/*Diameter*/}
               <td>{asteroid.close_approach_data[0].orbiting_body}</td>  {/*Orbiting body*/}
               {/* <td>{Math.round(asteroid.close_approach_data[0].miss_distance.kilometers)}</td> */}  {/*Distance from Earth in first recorded approach*/}
