@@ -1,3 +1,5 @@
+* {box-sizing: border-box;}
+
 .container {
   font-family: Arial, sans-serif;
   max-width: 1200px;
@@ -36,4 +38,36 @@ a {
 
 a:hover {
   color: rgb(63, 63, 255);
+}
+
+.centered-div {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px
+}
+
+input[type="number"] {
+  width: 200px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+button {
+  background-color: #272690;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+hr {
+  margin-top: 20px;
 }

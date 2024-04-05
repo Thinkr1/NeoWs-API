@@ -86,13 +86,17 @@ function Asts() {
         </tbody>
       </table>
       <br />
+      <hr/>
       <br />
-      <input type="number" id="searchInp" placeholder="Asteroid ID" />
-      <button
-        onClick={() => getAstInfo(document.getElementById("searchInp").value)}
-      >
-        Get Close Approach Data
-      </button>
+      <h1>Search by ID</h1>
+      <div class="centered-div">
+        <input type="number" id="searchInp" placeholder="Asteroid ID" />
+        <button
+          onClick={() => getAstInfo(document.getElementById("searchInp").value)}
+        >
+          Get Close Approach Data
+        </button>
+      </div>
       <br />
       <br />
       <h2><a href={asteroids.filter(ast => ast.id === astID)[0]?.nasa_jpl_url} target="_blank" rel="noopener noreferrer">{asteroids.filter(ast => ast.id === astID)[0]?.name}</a></h2>
