@@ -99,7 +99,7 @@ function Asts() {
       <table className="search-table">
         <thead>
           <tr>
-            <th>Number</th>
+            <th>Approach #</th>
             <th>Date</th>
             <th>Relative Velocity (km/h)</th>
             <th>Distance to Earth (km)</th>
@@ -109,7 +109,7 @@ function Asts() {
         <tbody>
           {approachData.map((entry, index) => (
             <tr key={index}>
-              <td></td>
+              <td>{index+1}</td>
               <td>{entry.close_approach_date_full}</td>
               <td>{entry.relative_velocity.kilometers_per_hour}</td>
               <td>{entry.miss_distance.kilometers}</td>
