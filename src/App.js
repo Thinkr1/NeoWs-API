@@ -6,6 +6,7 @@ import "./styles.css";
 function Asts() {
   const [asteroids, setAsteroids] = useState([]);
   const [approachData, setApproachData] = useState([]);
+  const [astID, setAstID] = useState(0)
 
   useEffect(() => {
     axios
@@ -32,15 +33,15 @@ function Asts() {
         lastApproachDate = approachDate;
       }
     }
-
     return lastApproach;
   };
 
   const getAstInfo = (id) => {
+    setAstID(id)
     const ast = asteroids.find((asteroid) => asteroid.id === id);
     if (ast) {
       setApproachData(ast.close_approach_data);
-      console.log(ast.close_approach_data);
+      console.log(astID)
     } else {
       console.log("Asteroid not found");
     }
@@ -94,6 +95,7 @@ function Asts() {
       </button>
       <br />
       <br />
+      <h2><a href={asteroids.filter(ast => ast.id === astID)[0]?.nasa_jpl_url} target="_blank" rel="noopener noreferrer">{asteroids.filter(ast => ast.id === astID)[0]?.name}</a></h2>
       <table className="search-table">
         <thead>
           <tr>
