@@ -89,7 +89,7 @@ function Asts() {
       <hr/>
       <br />
       <h1>Search by ID</h1>
-      <div class="centered-div">
+      <div className="centered-div">
         <input type="number" id="searchInp" placeholder="Asteroid ID" />
         <button
           onClick={() => getAstInfo(document.getElementById("searchInp").value)}
