@@ -40,8 +40,14 @@ function Asts() {
     setAstID(id)
     const ast = asteroids.find((asteroid) => asteroid.id === id);
     if (ast) {
-      setApproachData(ast.close_approach_data);
-      console.log(astID)
+      axios
+        .get(`https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${config.NASA_API_KEY}`)
+        .then((response) => {
+          setApproachData(response.data.close_approach_data);
+        })
+        .catch((error) => {
+          console.error("Error fetching API: ", error)
+        })
     } else {
       console.log("Asteroid not found");
     }
