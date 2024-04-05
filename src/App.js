@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import config from './config.js';
-import "./styles.css"
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import config from "./config.js";
+import "./styles.css";
 
 function Asts() {
   const [asteroids, setAsteroids] = useState([]);
+  const [approachData, setApproachData] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${config.NASA_API_KEY}`)
-     .then(response => {
+    axios
+      .get(
+        `https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${config.NASA_API_KEY}`
+      )
+      .then((response) => {
         setAsteroids(response.data.near_earth_objects);
       })
-     .catch(error => {
-        console.error('Error fetching API:', error);
+      .catch((error) => {
+        console.error("Error fetching API:", error);
       });
   }, []);
 
-  // Function to get the last recorded approach
   const getLastApproach = (approaches) => {
     const today = new Date();
     let lastApproach = approaches[0];
@@ -33,8 +36,18 @@ function Asts() {
     return lastApproach;
   };
 
+  const getAstInfo = (id) => {
+    const ast = asteroids.find((asteroid) => asteroid.id === id);
+    if (ast) {
+      setApproachData(ast.close_approach_data);
+      console.log(ast.close_approach_data);
+    } else {
+      console.log("Asteroid not found");
+    }
+  };
+
   return (
-    <div className='container'>
+    <div className="container">
       <h1>NeoWs NASA API</h1>
       <table className='table'>
         <thead>
@@ -69,6 +82,38 @@ function Asts() {
             <td>{Math.round(getLastApproach(asteroid.close_approach_data).relative_velocity.kilometers_per_hour)}</td>{/* Last recorded approach relative velocity */}
           </tr>
         ))}
+        </tbody>
+      </table>
+      <br />
+      <br />
+      <input type="number" id="searchInp" placeholder="Asteroid ID" />
+      <button
+        onClick={() => getAstInfo(document.getElementById("searchInp").value)}
+      >
+        Get Info
+      </button>
+      <br />
+      <br />
+      <table className="search-table">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Relative Velocity (km/h)</th>
+            <th>Distance to Earth (km)</th>
+            <th>Orbiting body</th>
+          </tr>
+        </thead>
+        <tbody>
+          {approachData.map((entry, index) => (
+            <tr key={index}>
+              <td></td>
+              <td>{entry.close_approach_date_full}</td>
+              <td>{entry.relative_velocity.kilometers_per_hour}</td>
+              <td>{entry.miss_distance.kilometers}</td>
+              <td>{entry.orbiting_body}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
