@@ -100,7 +100,7 @@ function Asts() {
         <button
           onClick={() => getAstInfo(document.getElementById("searchInp").value)}
         >
-          Get Close Approach Data
+          Get Info
         </button>
       </div>
       <br />
