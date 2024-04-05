@@ -56,17 +56,17 @@ function Asts() {
         <tbody>
         {asteroids.map(asteroid => (
           <tr key={asteroid.id}>
-            <td>{asteroid.id}</td> {/* ID */}
-            <td><a href={asteroid.nasa_jpl_url} target="_blank" rel="noopener noreferrer">{asteroid.name}</a></td> {/* Name + link */}
-            <td>{(((asteroid.estimated_diameter.kilometers.estimated_diameter_min)+(asteroid.estimated_diameter.kilometers.estimated_diameter_max))/2).toFixed(3)}</td> {/* Diameter */}
-            <td>{asteroid.is_potentially_hazardous_asteroid? "Yes" : "No"}</td> {/* Hazardous? */}
-            <td>{Math.round(asteroid.orbital_data.orbital_period * 10) / 10}</td> {/* Orbital period */}
-            <td>{asteroid.orbital_data.first_observation_date}</td> {/* First observation */}
-            <td>{asteroid.orbital_data.last_observation_date}</td> {/* Last observation */}
-            <td>{asteroid.close_approach_data[0].close_approach_date} (orbiting {asteroid.close_approach_data[0].orbiting_body})</td> {/* First recorded approach */}
-            <td>{Math.round(asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour)}</td> {/* First recorded approach relative velocity */}
-            <td>{getLastApproach(asteroid.close_approach_data).close_approach_date} (orbiting {getLastApproach(asteroid.close_approach_data).orbiting_body})</td> {/* Last recorded approach */}
-            <td>{Math.round(getLastApproach(asteroid.close_approach_data).relative_velocity.kilometers_per_hour)}</td> {/* Last recorded approach relative velocity */}
+            <td><a href={asteroid.nasa_jpl_url} target="_blank" rel="noopener noreferrer">{asteroid.id}</a></td>{/* ID */}
+            <td><a href={asteroid.nasa_jpl_url} target="_blank" rel="noopener noreferrer">{asteroid.name}</a></td>{/* Name + link */}
+            <td>{(((asteroid.estimated_diameter.kilometers.estimated_diameter_min)+(asteroid.estimated_diameter.kilometers.estimated_diameter_max))/2).toFixed(3)}</td>{/* Diameter */}
+            <td>{asteroid.is_potentially_hazardous_asteroid? "Yes" : "No"}</td>{/* Hazardous? */}
+            <td>{Math.round(asteroid.orbital_data.orbital_period * 10) / 10}</td>{/* Orbital period */}
+            <td>{asteroid.orbital_data.first_observation_date}</td>{/* First observation */}
+            <td>{asteroid.orbital_data.last_observation_date}</td>{/* Last observation */}
+            <td>{asteroid.close_approach_data[0].close_approach_date} (orbiting {asteroid.close_approach_data[0].orbiting_body})</td>{/* First recorded approach */}
+            <td>{Math.round(asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour)}</td>{/* First recorded approach relative velocity */}
+            <td>{getLastApproach(asteroid.close_approach_data).close_approach_date} (orbiting {getLastApproach(asteroid.close_approach_data).orbiting_body})</td>{/* Last recorded approach */}
+            <td>{Math.round(getLastApproach(asteroid.close_approach_data).relative_velocity.kilometers_per_hour)}</td>{/* Last recorded approach relative velocity */}
           </tr>
         ))}
         </tbody>
