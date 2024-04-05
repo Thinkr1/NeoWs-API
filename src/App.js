@@ -114,9 +114,9 @@ function Asts() {
           {approachData.map((entry, index) => (
             <tr key={index}>
               <td>{index+1}</td>
-              <td>{entry.close_approach_date_full}</td>
-              <td>{entry.relative_velocity.kilometers_per_hour}</td>
-              <td>{entry.miss_distance.kilometers}</td>
+              <td>{entry.close_approach_date}</td>
+              <td>{Math.round(entry.relative_velocity.kilometers_per_hour)}</td>
+              <td>{Math.round(entry.miss_distance.kilometers)}</td>
               <td>{entry.orbiting_body}</td>
             </tr>
           ))}
